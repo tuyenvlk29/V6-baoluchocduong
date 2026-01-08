@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên Hệ - Thỏ Ngọc</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .contact-info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-detail {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-detail i {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            width: 30px;
+        }
+
+        .contact-form-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        @media (max-width: 768px) {
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <a href="index.html" class="header-button">Trang chủ</a>
+        </div>
+        <div class="logo">
+            <a href="index.html" style="text-decoration:none;">
+                <img src="https://lqdlbt.igcschool.edu.vn/Data/Sites/17/media/logo-web---lqdlbt-trang-png-72.png"
+                    alt="Logo" id="logo">
+            </a>
+        </div>
+        <div class="header-right">
+            <a href="login.html" class="header-button">Đăng xuất</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2 style="text-align: center; margin-bottom: 2rem; color: var(--primary-blue);">Liên Hệ</h2>
+        <p
+            style="text-align: center; margin-bottom: 3rem; color: #555; max-width: 800px; margin-left: auto; margin-right: auto;">
+            Nếu bạn gặp bất kỳ khó khăn nào trong quá trình sử dụng website, hoặc cần sự hỗ trợ về các vấn đề tâm lý,
+            hãy liên hệ với chúng tôi qua các phương thức dưới đây. Chúng tôi luôn sẵn sàng hỗ trợ bạn.
+        </p>
+
+        <div class="contact-layout">
+            <!-- Left: Contact Info -->
+            <div class="contact-info-card">
+                <h3 style="margin-bottom: 1.5rem; color: var(--primary-blue);">Thông Tin Liên Hệ</h3>
+
+                <div class="contact-detail">
+                    <div>📞</div>
+                    <div>
+                        <strong>Hotline:</strong><br>
+                        <span class="hotline" style="font-size: 1.2rem;">0396390048</span>
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <div>📧</div>
+                    <div>
+                        <strong>Email:</strong><br>
+                        <a href="mailto:thaondx@igcschool.edu.vn">thaondx@igcschool.edu.vn</a>
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <div>🕒</div>
+                    <div>
+                        <strong>Giờ làm việc:</strong><br>
+                        Từ 8:00 AM đến 5:00 PM (thứ Hai đến thứ Sáu)
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <div>📍</div>
+                    <div>
+                        <strong>Địa chỉ:</strong><br>
+                        Trường THPT Lê Quý Đôn-Long Bình Tân, Đồng nai.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Contact Form -->
+            <div class="contact-form-card">
+                <h3 style="margin-bottom: 1.5rem; color: var(--primary-blue);">Gửi Yêu Cầu Hỗ Trợ</h3>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Họ và tên</label>
+                        <input type="text" id="name" placeholder="Nhập họ tên của bạn" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email liên hệ</label>
+                        <input type="email" id="email" placeholder="Nhập email của bạn" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Nội dung tin nhắn</label>
+                        <textarea id="message" placeholder="Nhập nội dung cần hỗ trợ..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 1rem;">Gửi yêu cầu</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2026 Thỏ Ngọc - Hệ thống tư vấn tâm lý học đường.</p>
+            <p>Hotline hỗ trợ: <span class="hotline">0396390048</span></p>
+        </div>
+    </footer>
+    <script src="chatbot.js"></script>
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            alert('Cảm ơn bạn đã liên hệ! Chúng tôi đã nhận được yêu cầu và sẽ phản hồi sớm nhất có thể.');
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>

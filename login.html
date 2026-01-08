@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - Thỏ Ngọc</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="login-wrapper">
+        <div class="login-card">
+            <h2 style="text-align: center; margin-bottom: 2rem; color: var(--primary-blue);">Đăng Nhập</h2>
+            <div class="login-tabs">
+                <button class="tab-btn active" onclick="switchTab('student')">Học sinh</button>
+                <button class="tab-btn" onclick="switchTab('admin')">Quản trị viên</button>
+            </div>
+
+            <!-- Student Form -->
+            <form id="student-form" class="login-form active" action="topics.html">
+                <div class="form-group">
+                    <label for="student-name">Họ và tên</label>
+                    <input type="text" id="student-name" placeholder="Nhập họ tên của bạn" required>
+                </div>
+                <div class="form-group">
+                    <label for="grade">Khối lớp</label>
+                    <select id="grade" required>
+                        <option value="">Chọn khối lớp</option>
+                        <option value="10">Lớp 10</option>
+                        <option value="11">Lớp 11</option>
+                        <option value="12">Lớp 12</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Vào hệ thống</button>
+            </form>
+
+            <!-- Admin Form -->
+            <form id="admin-form" class="login-form" action="index.html"> <!-- Admin might go to dashboard/index -->
+                <div class="form-group">
+                    <label for="admin-id">Mã quản trị</label>
+                    <input type="text" id="admin-id" placeholder="Nhập mã quản trị" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mật khẩu</label>
+                    <input type="password" id="password" placeholder="Nhập mật khẩu" required>
+                </div>
+                <button type="submit" class="btn">Đăng nhập</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(type) {
+            const studentForm = document.getElementById('student-form');
+            const adminForm = document.getElementById('admin-form');
+            const btns = document.querySelectorAll('.tab-btn');
+
+            if (type === 'student') {
+                studentForm.classList.add('active');
+                adminForm.classList.remove('active');
+                btns[0].classList.add('active');
+                btns[1].classList.remove('active');
+            } else {
+                studentForm.classList.remove('active');
+                adminForm.classList.add('active');
+                btns[0].classList.remove('active');
+                btns[1].classList.add('active');
+            }
+        }
+
+        // Handle Student Login
+        document.getElementById('student-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = document.getElementById('student-name').value;
+            const grade = document.getElementById('grade').value;
+
+            if (name && grade) {
+                // Save context if needed for chatbot
+                localStorage.setItem('studentName', name);
+                localStorage.setItem('studentGrade', grade);
+
+                // Redirect based on student typical flow
+                window.location.href = 'topics.html';
+            }
+        });
+
+        // Handle Admin Login (Secure via Backend)
+        document.getElementById('admin-form').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const id = document.getElementById('admin-id').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('http://localhost:3000/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id, password })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    sessionStorage.setItem('adminLoggedIn', 'true'); // Session flag
+                    window.location.href = data.redirect;
+                } else {
+                    alert(data.message || "Đăng nhập thất bại");
+                }
+            } catch (error) {
+                console.error("Login Error:", error);
+                alert("Lỗi kết nối máy chủ");
+            }
+        });
+    </script>
+    <script src="chatbot.js"></script>
+</body>
+
+</html>

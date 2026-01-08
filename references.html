@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tài liệu tham khảo - Thỏ Ngọc</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .library-layout {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .sidebar {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+        }
+
+        .main-content {
+            flex: 3;
+            min-width: 300px;
+        }
+
+        .filter-box {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        .filter-group {
+            margin-bottom: 1rem;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .filter-group input,
+        .filter-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .reference-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .book-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .book-thumb {
+            height: 150px;
+            background-color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #777;
+            font-size: 2.5rem;
+        }
+
+        .book-info {
+            padding: 1rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .book-title {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--primary-blue);
+        }
+
+        .book-desc {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .book-btn {
+            align-self: flex-start;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <a href="index.html" class="header-button">Trang chủ</a>
+        </div>
+        <div class="logo">
+            <a href="index.html" style="text-decoration:none;">
+                <img src="https://lqdlbt.igcschool.edu.vn/Data/Sites/17/media/logo-web---lqdlbt-trang-png-72.png"
+                    alt="Logo" id="logo">
+            </a>
+        </div>
+        <div class="header-right">
+            <a href="login.html" class="header-button">Đăng xuất</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2 style="text-align: center; color: var(--primary-blue); margin-bottom: 2rem;">Tài Liệu Tham Khảo</h2>
+        <p
+            style="text-align: center; margin-bottom: 3rem; color: #555; max-width: 800px; margin-left: auto; margin-right: auto;">
+            Trang tài liệu tham khảo này cung cấp các tài liệu hỗ trợ về tâm lý học đường. Bạn có thể tìm kiếm và đọc
+            các tài liệu để hiểu rõ hơn về các vấn đề như bạo lực học đường, quản lý cảm xúc và các vấn đề tâm lý khác.
+        </p>
+
+        <div class="library-layout">
+            <!-- Sidebar: Search & Popular -->
+            <aside class="sidebar">
+                <div class="filter-box">
+                    <h3>Tìm kiếm & Lọc</h3>
+                    <div class="filter-group">
+                        <label>Từ khóa</label>
+                        <input type="text" id="search-input" placeholder="Nhập tên tài liệu...">
+                    </div>
+                    <div class="filter-group">
+                        <label>Chủ đề</label>
+                        <select id="category-select">
+                            <option value="all">Tất cả</option>
+                            <option value="stress">Căng thẳng & Áp lực</option>
+                            <option value="violence">Bạo lực học đường</option>
+                            <option value="emotion">Cảm xúc</option>
+                            <option value="skill">Kỹ năng sống</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="filter-box">
+                    <h3 style="margin-bottom:1rem;">Phổ biến nhất 🔥</h3>
+                    <div id="popular-container">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content: Grid -->
+            <section class="main-content">
+                <div id="resource-container" class="reference-grid">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2026 Thỏ Ngọc - Hệ thống tư vấn tâm lý học đường.</p>
+            <p>Hotline hỗ trợ: <span class="hotline">0396390048</span></p>
+        </div>
+    </footer>
+    <script src="chatbot.js"></script>
+    <script src="library.js"></script>
+</body>
+
+</html>

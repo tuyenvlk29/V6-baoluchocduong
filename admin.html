@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản trị hệ thống - Thỏ Ngọc</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .admin-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .admin-sidebar {
+            width: 250px;
+            background: var(--primary-blue);
+            color: white;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .admin-sidebar h2 {
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+        }
+
+        .admin-nav a {
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: color 0.3s;
+        }
+
+        .admin-nav a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .admin-content {
+            flex: 1;
+            padding: 2rem;
+            background: #f4f6f9;
+        }
+
+        .dashboard-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        .alert-item {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            border-left: 5px solid #c62828;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th,
+        td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+
+        .text-danger {
+            color: #d32f2f;
+        }
+
+        .text-success {
+            color: #388e3c;
+        }
+
+        .text-warning {
+            color: #fbc02d;
+        }
+
+        .text-orange {
+            color: #f57c00;
+        }
+
+        .text-muted {
+            color: #666;
+        }
+
+        .font-bold {
+            font-weight: bold;
+        }
+
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+            cursor: pointer;
+        }
+
+        .btn-danger {
+            background-color: #d32f2f;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <h2>Admin Panel 🐰</h2>
+            <nav class="admin-nav">
+                <a href="#overview">Tổng quan</a>
+                <a href="#students">Quản lý Học sinh</a>
+                <a href="#library">Quản lý Thư viện</a>
+                <a href="#logs">Nhật ký Chatbot</a>
+                <a href="index.html" style="margin-top: auto; border-top: 1px solid white;">Quay về Trang chủ</a>
+            </nav>
+        </aside>
+
+        <main class="admin-content">
+            <h1 style="margin-bottom: 2rem; color: #333;">Dashboard Quản trị</h1>
+
+            <div id="overview" class="stat-grid">
+                <div class="stat-card">
+                    <h3>Tổng số học sinh</h3>
+                    <div class="stat-number" id="total-students-count">loading...</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Cảnh báo rủi ro cao</h3>
+                    <div class="stat-number" id="high-risk-count" style="color: var(--danger-color);">loading...</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Truy cập Thư viện</h3>
+                    <div class="stat-number">324</div>
+                </div>
+            </div>
+
+            <!-- Risk Alerts Section -->
+            <div class="dashboard-card" style="border: 2px solid var(--danger-color);">
+                <h3 style="color: var(--danger-color); margin-bottom: 1rem;">⚠️ Cảnh báo cần chú ý ngay</h3>
+                <div id="alert-list">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <div id="students" class="dashboard-card">
+                <h3>Danh sách kết quả khảo sát gần nhất</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Họ và Tên</th>
+                            <th>Lớp</th>
+                            <th>Điểm số</th>
+                            <th>Đánh giá rủi ro</th>
+                            <th>Thời gian</th>
+                        </tr>
+                    </thead>
+                    <tbody id="student-table-body">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="library" class="dashboard-card">
+                <h3>Quản lý Tài liệu</h3>
+                <div style="margin-bottom: 1rem; background: #f8f9fa; padding: 1rem; border-radius: 4px;">
+                    <h4>Thêm tài liệu mới</h4>
+                    <form id="add-resource-form" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 0.5rem;">
+                        <input type="text" id="new-title" placeholder="Tiêu đề" required style="padding: 5px; flex: 2;">
+                        <select id="new-category" style="padding: 5px; flex: 1;">
+                            <option value="stress">Căng thẳng</option>
+                            <option value="violence">Bạo lực</option>
+                            <option value="emotion">Cảm xúc</option>
+                            <option value="skill">Kỹ năng</option>
+                        </select>
+                        <input type="text" id="new-desc" placeholder="Mô tả ngắn" required
+                            style="padding: 5px; flex: 3;">
+                        <button type="submit" class="btn-sm"
+                            style="background: var(--primary-blue); color: white; border: none;">Thêm mới</button>
+                    </form>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tiêu đề</th>
+                            <th>Chủ đề</th>
+                            <th>Lượt xem</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody id="library-table-body">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="logs" class="dashboard-card">
+                <h3>Nhật ký hoạt động Chatbot</h3>
+                <div id="chat-logs-list"
+                    style="max-height: 200px; overflow-y: auto; background: #f9f9f9; padding: 1rem; border: 1px solid #eee;">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+
+</html>

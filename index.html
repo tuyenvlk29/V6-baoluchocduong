@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ - Thỏ Ngọc</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-left" style="display: flex; align-items: center; gap: 20px;">
+            <div class="logo">
+                <a href="index.html" style="text-decoration:none;">
+                    <img src="https://lqdlbt.igcschool.edu.vn/Data/Sites/17/media/logo-web---lqdlbt-trang-png-72.png"
+                        alt="Logo" id="logo">
+                </a>
+            </div>
+            <a href="references.html" class="header-button">Tài liệu tham khảo</a>
+        </div>
+        <div class="header-right">
+            <a href="login.html" class="header-button">Đăng xuất</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Welcome Section -->
+        <section class="intro" style="text-align: center; margin: 3rem 0;">
+            <h2 style="color: var(--primary-blue); font-size: 2rem; margin-bottom: 1rem;">Chào mừng đến với hệ thống tư
+                vấn tâm lý học đường</h2>
+            <p style="font-size: 1.1rem; max-width: 800px; margin: 0 auto; color: #555;">Chúng tôi cung cấp hỗ trợ tâm
+                lý cho học sinh, đặc biệt là những học sinh có vấn đề liên quan đến bạo lực học đường. Hệ thống này giúp
+                bạn thực hiện các trắc nghiệm tâm lý và nhận được các phản hồi tư vấn phù hợp từ các chuyên gia. Hãy bắt
+                đầu hành trình của bạn ngay hôm nay.</p>
+        </section>
+
+        <!-- Psychological Test Section -->
+        <section class="tests-section" style="margin-bottom: 4rem;">
+            <h2 style="text-align: center; color: var(--primary-blue); margin-bottom: 2rem;">Các trắc nghiệm tâm lý</h2>
+            <div class="topics-grid">
+                <a href="test-violence.html" class="topic-card topic-highlight">
+                    <h3>Bạo lực học đường</h3>
+                </a>
+                <a href="topics.html" class="topic-card">
+                    <h3>Quản lý cảm xúc</h3>
+                </a>
+                <a href="topics.html" class="topic-card">
+                    <h3>Tư vấn tâm lý</h3>
+                </a>
+                <a href="topics.html" class="topic-card">
+                    <h3>Phát triển bản thân</h3>
+                </a>
+            </div>
+        </section>
+
+        <!-- Chatbot Description Section -->
+        <section class="chatbot-info"
+            style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 3rem; display: flex; align-items: center; gap: 2rem;">
+            <div style="font-size: 4rem;">🐰</div>
+            <div>
+                <h3 style="color: var(--primary-blue); margin-bottom: 0.5rem; font-size: 1.5rem;">Thỏ Ngọc – Chuyên gia
+                    tư vấn tâm lý</h3>
+                <p>Chatbot của chúng tôi luôn sẵn sàng để giúp bạn giải quyết các vấn đề tâm lý. Hãy trò chuyện với Thỏ
+                    Ngọc ngay khi bạn cần sự hỗ trợ.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>Chúng tôi cam kết bảo mật thông tin và cung cấp dịch vụ hỗ trợ tâm lý một cách an toàn và chuyên nghiệp.
+            </p>
+            <p>Hotline hỗ trợ: <span class="hotline">0396390048</span></p>
+        </div>
+    </footer>
+
+    <script src="chatbot.js"></script>
+</body>
+
+</html>
